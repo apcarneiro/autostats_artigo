@@ -62,15 +62,15 @@ Por tratar-se de um protótipo que visa demonstrar a viabilidade da solução, o
 
 \subsection{Preço dos veículos de passeio }
 
-Como fonte de informação sobre preços de veículos de passeio novos e usados, utiliza-se três origens distintas. A primeira refere-se à origem oficial do preço médio de veículos de passeio com valores  reconhecidos por instituições financeiras como a referência de valor dos veículos, utilizados em contratos e decisões judiciais. Esses valores são disponibilizados em consulta gratuita pela {Fipe}, na página https://veiculos.fipe.org.br/.  
+Como fonte de informação sobre preços de veículos de passeio novos e usados, utiliza-se três origens distintas. A primeira refere-se à origem oficial do preço médio de veículos de passeio com valores  reconhecidos por instituições financeiras como a referência de valor dos veículos, utilizados em contratos e decisões judiciais. Esses valores são disponibilizados em consulta gratuita pela Fipe \cite{Fipe}, na página https://veiculos.fipe.org.br/.  
 
 As outras fontes de informações são sites de vendas (WebMotors e OLX), que concentram anúncios de diversos lojistas e/ou pessoas físicas interessadas em vender seus veículos. O WebMotors é um \textit{"marketplace"} exclusivamente de veículos novos ou usados. O OLX, por sua vez, possui uma variedade de produtos, mas é muito utilizado por pessoas interessadas em vender carros usados também.
 
 \subsection{Indicadores Econômicos}
 
-O portal {Debit} disponibiliza em  `https://debit.com.br/tabelas/ipca-indice-nacional-de-precos-ao-consumidor-amplo.php' uma tabela com a variação mensal do IPCA desde 1980. Esses valores são fornecidos pelo {IBGE}, mensalmente.
+O portal Debit \cite{Debit} disponibiliza em  `https://debit.com.br/tabelas/ipca-indice-nacional-de-precos-ao-consumidor-amplo.php' uma tabela com a variação mensal do IPCA desde 1980. Esses valores são fornecidos pelo IBGE \cite{IBGE}, mensalmente.
 
-Esta mesma solução disponibiliza a tabela do Índice Geral de Preços Médios (IGP-M), produzido pela Fundação Getúlio Vargas - {FGV}, desde 1989 em 'https://debit.com.br/tabelas/tabela-completa.php?indice=igpm´.
+Esta mesma solução disponibiliza a tabela do Índice Geral de Preços Médios (IGP-M), produzido pela Fundação Getúlio Vargas - FGV \cite{FGV}, desde 1989 em 'https://debit.com.br/tabelas/tabela-completa.php?indice=igpm´.
 
 O portal da Fipe disponibiliza as taxas mensais do Índice de Preços ao Consumidor - IPC, desde 2011, em 'https://www.fipe.org.br/pt-br/indices/ipc/\#indice-mensal´.
 
@@ -102,9 +102,23 @@ Para OLX, faz-se uma requisição ao endereço:
 
 https://www.olx.com.br/brasil?q=\{FABRICANTE\} \{MODELO\} \{ANO\}
 
+
+\begin{figure}[h!]
+	\centerline{\includegraphics[width=250pt]{assets/olx.png}}
+	\caption{Site de anúncios da OLX.}
+	\label{fig5}
+\end{figure}
+
 Para o WebMotors, navega-se em:
 
 https://www.webmotors.com.br/carros?tipoveiculo=carros\& anoate=\{ANO\}\&anode=\{ANO\}\&marca1=\{FABRICANTE\}\& modelo1=\{MODELO\}\&versao1=\{VERSÃO DO MODELO\}
+
+
+\begin{figure}[h!]
+	\centerline{\includegraphics[width=250pt]{assets/webmotors.png}}
+	\caption{Site de anúncios da WebMotors.}
+	\label{fig5}
+\end{figure}
 
 Por definição, os anúncios são exibidos em ordem de "relevância" (conceito definido pela empresa - WebMotors ou OLX). Uma vez acessadas essas URLs, captura-se os campos HTML reverentes aos preços de até 20 anúncios na ordem de exibição.
 
@@ -151,41 +165,62 @@ Selecionado uma marca, um modelo e o ano de fabricação do veículo, a soluçã
 
 \begin{itemize}
 	\item série temporal do valor do ano de fabricação até o mês atual;
+	
+	\begin{figure}[h!]
+		\centerline{\includegraphics[width=250pt]{assets/precoUsado.png}}
+		\caption{Preço do veículo usado.}
+		\label{fig3}
+	\end{figure}
+
 	\item série temporal do valor `zero quilômetro' do ano de fabricação até o mês em que era disponível o modelo novo;
+	
+	
+	\begin{figure}[h!]
+		\centerline{\includegraphics[width=250pt]{assets/precoZero.png}}
+		\caption{Preço do veículo novo.}
+		\label{fig4}
+	\end{figure}
+	
+	
 	\item série temporal demonstrando a variação percentual do valor do ano de fabricação até o mês atual junto com as curvas dos índices econômicos no mesmo período;
+	
+	
+	\begin{figure}[h!]
+		\centerline{\includegraphics[width=250pt]{assets/varZero.png}}
+		\caption{Variação do preço do veículo novo em comparação com índices financeiros.}
+		\label{fig5}
+	\end{figure}
+	
+	
 	\item série temporal da variação percentual do valor do veículo `zero quilômetro' junto com as curvas dos índices econômicos no mesmo período.
+	
+	
+	\begin{figure}[h!]
+		\centerline{\includegraphics[width=250pt]{assets/varUsado.png}}
+		\caption{Variação do preço do veículo usado em comparação com índices financeiros.}
+		\label{fig6}
+	\end{figure}
+	
 \end{itemize}
 
-A seguir exemplos destes gráficos para o veículo Modelo de código Fipe 005481-0 - `Fox Connect 1.6 Flex 8V 5p'.
-
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=250pt]{assets/precoUsado.png}}
-	\caption{Preço do veículo usado.}
-	\label{fig3}
-\end{figure}
-
-
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=250pt]{assets/precoZero.png}}
-	\caption{Preço do veículo novo.}
-	\label{fig4}
-\end{figure}
-
-
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=250pt]{assets/varZero.png}}
-	\caption{Variação do preço do veículo novo em comparação com índices financeiros.}
-	\label{fig5}
-\end{figure}
-
-
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=250pt]{assets/varUsado.png}}
-	\caption{Variação do preço do veículo usado em comparação com índices financeiros.}
-	\label{fig6}
-\end{figure}
+Os exemplos de gráficos utilizados referem-se ao veículo Modelo de código Fipe 005481-0 - `Fox Connect 1.6 Flex 8V 5p'.
 
 É disponibilizado no \textit{`dashboard'}, também, os valores previstos para os próximos 6 meses pelo algoritmo.
+
+Todos os arquivos fontes utilizados para elaboração deste artigo estão disponíveis em https://github.com/apcarneiro/autostats\_artigo.
+
+\section{Conclusão}
+
+O ensaio realizado para o protótipo demonstra que as informações sobre o mesmo veículo zero e usado são úteis para potencializar uma análise da desvalorização do veículo com o passar do tempo e auxiliar na tomada de decisão de compra/venda.
+
+Ainda sobre os veículos usados, a comparação entre os valores de referência Fipe e os valores disponíveis nos anúncios dos `marketplaces' demonstram que os valores praticados pelo mercado variam em +/-15\% do referência Fipe (nas amostras exercitadas no ensaio - somente linha Volkswagen)
+
+Já a comparação com os indicadores financeiros não parecem de grande ajuda, não impactando na variação do preço do carro zero quilômetro ou no carro usado.
+
+De qualquer forma, parece ser uma boa fonte de apoio ao consumidor/vendedor para tomada de decisão sem que esse precise consultar muitas fontes.
+ 
+Durante a pesquisa para esse ensaio, encontrou-se um portal que fornece parte das informações propostas em https://usados.umluizlima.dev. Porém as informações fornecidas são bem mais restritas e compreendem apenas 2 anos de `vida' do veículo.
+
 
 \begin{thebibliography}{00}
 	\bibitem{Fipe} Fipe - Fundação Instituto de Pesquisas Econômicas. https://www.fipe.org.br.
