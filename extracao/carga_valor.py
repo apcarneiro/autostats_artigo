@@ -6,9 +6,9 @@ from tqdm import tqdm
 
 
 
-def atualizaValoresMarca(pool:psycopg2.pool.SimpleConnectionPool, codMarca):
+def atualizaValoresMarca(pool:psycopg2.pool.SimpleConnectionPool, codMarca, offset):
     try:
-        modelos = Util.getModelosMarca(pool, codMarca)
+        modelos = Util.getModelosMarca(pool, codMarca, offset)
     except Exception as e:
         print("erro ao capturar modelos: ", e)
         return
@@ -34,12 +34,14 @@ if len(args) < 1:
     print("entre com o código fipe do modelo do veículo\n")
     sys.exit(1)
 
-
 codigo = args[0]
+offset = 0
+if len(args) >= 2:
+    offset = int(args[1])
 
 params = Util.GetDbConfig()
 
 connPool = psycopg2.pool.SimpleConnectionPool(1,20,**params)#conexao com o banco
 
-atualizaValoresMarca(connPool,codigo)
+atualizaValoresMarca(connPool,codigo, offset)
 

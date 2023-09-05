@@ -102,7 +102,7 @@ def GetAnosModelo(referencia, marca, modelo):
         fail = True
     finally:
         if fail:
-            time.sleep(2)
+            time.sleep(1)
             return GetAnosModelo(referencia, marca, modelo)
         
     return anos.json()
@@ -124,7 +124,6 @@ def GetValor(referencia, marca, modelo, ano, comb):
     fail = False
     
     try:
-        time.sleep(1)
         valor = requests.post(_fipe_url + 'ConsultarValorComTodosParametros', req, timeout=5)
         valor.raise_for_status()
     except (requests.exceptions.ConnectionError, requests.exceptions.Timeout) as e:
@@ -138,7 +137,7 @@ def GetValor(referencia, marca, modelo, ano, comb):
         fail = True
     finally:
         if fail:
-            time.sleep(2)
+            time.sleep(1)
             return GetValor(referencia, marca, modelo, ano, comb)
 
     return valor.json()

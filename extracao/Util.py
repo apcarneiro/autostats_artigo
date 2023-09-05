@@ -98,11 +98,13 @@ def getReference(pool:SimpleConnectionPool, month:int, year:int):
     raise Exception("error on get reference to {}".format(ref)) 
 
 
-def getModelosMarca(pool:SimpleConnectionPool, codMarca) ->[]:
+def getModelosMarca(pool:SimpleConnectionPool, codMarca, offset:int) ->[]:
     sql = """select codigo_fipe 
     from modelo 
     where marca = %s 
     and codigo_fipe is not null"""
+    if offset > 0:
+        sql += " offset {}".format(offset)
 
     conn = pool.getconn()
 
