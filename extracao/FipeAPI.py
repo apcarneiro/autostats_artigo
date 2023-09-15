@@ -102,7 +102,7 @@ def GetAnosModelo(referencia, marca, modelo):
         fail = True
     finally:
         if fail:
-            time.sleep(1)
+            time.sleep(0.2)
             return GetAnosModelo(referencia, marca, modelo)
         
     return anos.json()
@@ -137,7 +137,7 @@ def GetValor(referencia, marca, modelo, ano, comb):
         fail = True
     finally:
         if fail:
-            time.sleep(1)
+            time.sleep(0.5)
             return GetValor(referencia, marca, modelo, ano, comb)
 
     return valor.json()
